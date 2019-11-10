@@ -50,14 +50,12 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-     
-        
         let dataIndex = indexPath.row - 1
         
         if indexPath.row == 0{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
             cell.textLabel?.text = tableViewData[indexPath.section].title
-               cell.textLabel?.textColor = UIColor.black
+               cell.textLabel?.textColor = UIColor.white
             
             return cell
             
@@ -87,8 +85,7 @@ class TableViewController: UITableViewController {
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
-                
-                
+    
             }
             
         }
