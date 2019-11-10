@@ -17,9 +17,11 @@ struct cellData {
     
 }
 
-class TableViewController: UITableViewController{
+class TableViewController: UITableViewController {
     
     var tableViewData = [cellData]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,9 @@ class TableViewController: UITableViewController{
                            cellData(opened: false, title: "Lugares", sectionData: ["Patagonia", "Salta", "Cordoba"]),
                            cellData(opened: false, title: "Visitantes", sectionData: ["Rodrigo", "Marcos", "Lautaro"]),
                            cellData(opened: false, title: "Movilidad", sectionData: ["Avion", "Bus", "Bicicleta"])
-                           ]
+            ]
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -46,17 +50,21 @@ class TableViewController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+     
+        
         let dataIndex = indexPath.row - 1
         
         if indexPath.row == 0{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
             cell.textLabel?.text = tableViewData[indexPath.section].title
+               cell.textLabel?.textColor = UIColor.black
             
             return cell
             
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else {return UITableViewCell()}
             cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
+            cell.textLabel?.textColor = UIColor.gray
             return cell
             
         }
@@ -72,16 +80,36 @@ class TableViewController: UITableViewController{
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none) // none es la  animacion
                 
+               // let indexPath = tableView.indexPathForSelectedRow() //optional, to get from any UIButton for example
+             
+                
             }else{
                 tableViewData[indexPath.section].opened = true
                 let sections = IndexSet.init(integer: indexPath.section)
                 tableView.reloadSections(sections, with: .none)
                 
+                
             }
             
         }
         
-    }
+        
+        let rowSelected = indexPath.row
+        
+        if rowSelected > 0 {
+            print("section: \(indexPath.section)")
+            print("row: \(indexPath.row)")
+        }
+      
+        
+        
+        
+        
     
+    
+    }
+
 }
+
+
 
